@@ -11,12 +11,6 @@
 ; Handles both Unix (LF) and Windows (CRLF) line endings, and
 ; reports a clear error message if the file cannot be opened
 ; or read.
-;
-; Build:
-;   nasm -f elf64 line_counter.asm -o line_counter.o
-;   ld line_counter.o -o line_counter
-; Run:
-;   ./line_counter
 ; =============================================================
 
 %define SYS_READ   0
