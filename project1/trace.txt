@@ -1,0 +1,51 @@
+execve("./program", ["./program"], 0x7ffd324997e0 /* 26 vars */) = 0
+brk(NULL)                               = 0x5fe37dcd5000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x707011470000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=19359, ...}) = 0
+mmap(NULL, 19359, PROT_READ, MAP_PRIVATE, 3, 0) = 0x70701146b000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x707011382000
+mmap(0x707011392000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000) = 0x707011392000
+mmap(0x707011411000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8f000) = 0x707011411000
+mmap(0x707011469000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xe7000) = 0x707011469000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x707011000000
+mmap(0x707011028000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x707011028000
+mmap(0x7070111b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x7070111b0000
+mmap(0x7070111ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x7070111ff000
+mmap(0x707011205000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x707011205000
+close(3)                                = 0
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70701137f000
+arch_prctl(ARCH_SET_FS, 0x70701137f740) = 0
+set_tid_address(0x70701137fa10)         = 1159
+set_robust_list(0x70701137fa20, 24)     = 0
+rseq(0x707011380060, 0x20, 0, 0x53053053) = 0
+mprotect(0x7070111ff000, 16384, PROT_READ) = 0
+mprotect(0x707011469000, 4096, PROT_READ) = 0
+mprotect(0x5fe36be62000, 4096, PROT_READ) = 0
+mprotect(0x7070114b0000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x70701146b000, 19359)           = 0
+getrandom("\xd1\x39\x7f\x75\x59\x17\xdd\x37", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x5fe37dcd5000
+brk(0x5fe37dcf6000)                     = 0x5fe37dcf6000
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0), ...}) = 0
+write(1, "Sensor Monitoring Report\n", 25) = 25
+write(1, "-------------------------\n", 26) = 26
+write(1, "Readings processed : 10\n", 24) = 24
+write(1, "Global counter      : 10\n", 25) = 25
+write(1, "Average reading     : 25.85\n", 28) = 28
+write(1, "Status              : NORMAL\n", 29) = 29
+write(1, "sqrt(average)        : 5.08\n", 28) = 28
+exit_group(0)                           = ?
++++ exited with 0 +++
