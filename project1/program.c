@@ -8,19 +8,19 @@
 #include <stdlib.h>
 #include <math.h>
 
-/* Global variable runs count of readings processed across all calls */
+/* Tracks how many readings have been generated during the program run. */
 int g_reading_count = 0;
 
-/* Function 1: fills the allocated buffer with sample sensor readings */
+/* Fills the allocated buffer with a simple trend-based set of readings. */
 void generate_readings(double *buffer, int n) {
-    /* Loop requirement */
+    /* Populate the array with a repeating pattern for the demo. */
     for (int i = 0; i < n; i++) {
         buffer[i] = 20.0 + (i * 1.5) - (i % 3);
         g_reading_count++;
     }
 }
 
-/* Function 2 that computes the arithmetic mean of the buffer */
+/* Computes the arithmetic mean of the current reading set. */
 double compute_average(double *buffer, int n) {
     double sum = 0.0;
     for (int i = 0; i < n; i++) {
@@ -29,7 +29,7 @@ double compute_average(double *buffer, int n) {
     return sum / n;
 }
 
-/* Function 3 that classifies the average reading; contains the decision statement */
+/* Classifies the average reading as LOW, NORMAL, or HIGH. */
 const char *classify_average(double avg) {
     if (avg < 22.0) {
         return "LOW";
@@ -43,7 +43,7 @@ const char *classify_average(double avg) {
 int main(void) {
     int n = 10;
 
-    /* Dynamic memory allocation, data stored in the allocated memory */
+    /* Allocate heap memory for the sensor readings before processing them. */
     double *readings = (double *) malloc(n * sizeof(double));
     if (readings == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
@@ -55,7 +55,7 @@ int main(void) {
     double avg = compute_average(readings, n);
     const char *status = classify_average(avg);
 
-    /* C standard library calls: printf, sqrt */
+    /* Use the standard math library to compute a simple derived value. */
     double spread = sqrt(avg);
 
     printf("Sensor Monitoring Report\n");
