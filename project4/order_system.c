@@ -28,9 +28,7 @@
 
 #define QUEUE_CAPACITY 5
 
-/* ---------------------------------------------------------------
- * Shared state, protected entirely by `queue_lock`.
- * ------------------------------------------------------------- */
+/* Shared queue state and counters protected by the mutex. */
 typedef struct {
     int orders[QUEUE_CAPACITY];
     int count;          /* current number of orders waiting in the queue */
@@ -57,9 +55,7 @@ static order_queue_t q;
  * race by ThreadSanitizer during testing. */
 static atomic_int g_shutdown = 0; /* tells the monitor thread to stop */
 
-/* ---------------------------------------------------------------
- * Helper: current time as HH:MM:SS for readable log output.
- * ------------------------------------------------------------- */
+/* Format the current time for readable thread output. */
 static void print_timestamp(void) {
     time_t now = time(NULL);
     struct tm lt;
