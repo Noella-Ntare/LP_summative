@@ -24,9 +24,7 @@
 #define BUF_SIZE 1024
 
 static ssize_t recv_line_block(int sock, char *buf, size_t maxlen) {
-    /* Receives whatever is currently available (the server sends each
-     * reply in a single write, so one recv() call is sufficient for
-     * this simple line-based protocol). */
+    /* Read the server response into a buffer for the simple line-based protocol. */
     ssize_t n = recv(sock, buf, maxlen - 1, 0);
     if (n > 0) buf[n] = '\0';
     return n;
@@ -69,7 +67,7 @@ int main(int argc, char *argv[]) {
 
     char buf[BUF_SIZE];
 
-    /* --- Authenticate --- */
+    /* Send the authentication request and wait for the server reply. */
     snprintf(buf, sizeof(buf), "AUTH %s\n", user_id);
     send(sock, buf, strlen(buf), 0);
 
@@ -89,7 +87,7 @@ int main(int argc, char *argv[]) {
     printf("Authentication SUCCESSFUL for user '%s'.\n", user_id);
     printf("Available equipment:\n%s", buf + 8 /* skip "AUTH_OK\n" */);
 
-    /* --- Choose equipment to reserve --- */
+    /* Ask the user which equipment to reserve. */
     char chosen[64];
     if (auto_equipment) {
         strncpy(chosen, auto_equipment, sizeof(chosen) - 1);
@@ -113,7 +111,7 @@ int main(int argc, char *argv[]) {
         printf("Server response: %s", buf);
     }
 
-    /* --- Close session gracefully --- */
+    /* Close the session gracefully after the reservation attempt. */
     send(sock, "QUIT\n", 5, 0);
     n = recv_line_block(sock, buf, sizeof(buf));
     if (n > 0) {

@@ -37,18 +37,13 @@
 #define BUF_SIZE         512
 #define MAX_USERID       32
 
-/* ---------------------------------------------------------------
- * "Database" of valid registered users (hard-coded for this demo;
- * a real system would load this from a file or DB).
- * ------------------------------------------------------------- */
+/* Hard-coded list of valid users for this demo application. */
 static const char *VALID_USERS[] = {
     "alice", "bob", "carol", "dave", "erin"
 };
 #define NUM_VALID_USERS (sizeof(VALID_USERS) / sizeof(VALID_USERS[0]))
 
-/* ---------------------------------------------------------------
- * Shared equipment reservation table, protected by `state_lock`.
- * ------------------------------------------------------------- */
+/* Equipment state and reservation status protected by the server mutex. */
 typedef struct {
     char name[32];
     int  reserved;             /* 0 = available, 1 = reserved      */
@@ -73,8 +68,8 @@ static int is_valid_user(const char *user_id) {
     return 0;
 }
 
-/* Prints current connected-client count and reservation status.
- * Called with state_lock already held by the caller. */
+/* Print the current connection count and equipment reservation state.
+ * This function is called only while the mutex is already held. */
 static void print_status_locked(void) {
     printf("---- Server status ---- (connected clients: %d)\n",
            connected_clients);
