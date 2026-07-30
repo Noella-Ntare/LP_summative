@@ -1,9 +1,4 @@
-"""
-test_sensor_analysis.py
-
-Exercises every function in the sensor_analysis C extension module,
-including a boundary/invalid-input case.
-"""
+"""Exercise the sensor_analysis extension with normal data and several error cases."""
 
 import sensor_analysis
 
